@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import getParticipantes from "./api/endpoints/getParticipantes";
-import getParticipanteTest from "./api/endpoints/getParticipanteTest";
+import getStudents from "./api/endpoints/getParticipantes";
+import getStudentTest from "./api/endpoints/getParticipanteTest";
 import getCorrectIncorrectTest from "./api/endpoints/getCorrectIncorrectTest";
 import getTestAverage from "./api/endpoints/getTestAverage";
 import registertestRating from "./api/endpoints/registertestRating";
@@ -10,7 +10,7 @@ import "./styles/report.css"
 import getCoeficiente from "./api/endpoints/getCoeficiente";
 
 const Report = () => {
-  const [participantes, setParticipantes] = useState();
+  const [students, setStudents] = useState();
   const [results, setResults] = useState();
   const [goodWrongTest, setGoodWrongTest] = useState();
   const [testsAverage, setTestsAverage] = useState();
@@ -23,8 +23,8 @@ const Report = () => {
   const [respuesta, setRespuesta] = useState(1);
 
 
-  const getParticipanteTestResults = () => {
-    getParticipanteTest(codigo)
+  const getStudentTestResults = () => {
+    getStudentTest(codigo)
       .then(function (response) {
         if (response) {
           setResults(response);
@@ -127,10 +127,10 @@ const Report = () => {
   };
 
   useEffect(() => {
-    getParticipantes()
+    getStudents()
       .then(function (response) {
         if (response) {
-          setParticipantes(response);
+          setStudents(response);
         }
       })
       .catch(function (error) {
@@ -144,7 +144,7 @@ const Report = () => {
         //   message: error?.response?.data?.Mensaje,
         // });
       });
-    getParticipanteTestResults();
+    getStudentTestResults();
     getCorrectIncorrectTestData();
     getTestsAverageData();
   }, []);
@@ -201,11 +201,11 @@ const Report = () => {
         <div className="tbl-content">
           <table cellPadding="0" cellSpacing="0" border="0">
             <tbody>
-              {participantes?.map((participante, index) => (
+              {students?.map((student, index) => (
                 <tr key={index}>
-                  <td>{participante[0]}</td>
-                  <td>{participante[1]}</td>
-                  <td>{participante[2]}</td>
+                  <td>{student[0]}</td>
+                  <td>{student[1]}</td>
+                  <td>{student[2]}</td>
                 </tr>
               ))}
             </tbody>
