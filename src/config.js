@@ -1,6 +1,6 @@
 const config = () => {
     return {
-        SERVER_URL: "back-production-8178.up.railway.app",
+        SERVER_URL: "back-software.herokuapp.com",
         // SERVER_URL: "http://localhost:3000",
     };
 };
